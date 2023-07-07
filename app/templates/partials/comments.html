@@ -2,7 +2,8 @@
   {% for comment in comments %}
   <section class="comment">
     <div class="meta">
-      {{comment.user.username}} on {{comment.created_at}}
+                           <!-- jinja filter starts at | format_date -->
+      {{comment.user.username}} on {{comment.created_at|format_date}}  
     </div>
     <div class="text">
       {{comment.comment_text}}
