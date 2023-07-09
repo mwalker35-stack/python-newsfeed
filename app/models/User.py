@@ -12,6 +12,13 @@ class User(Base):
   email = Column(String(50), nullable=False, unique=True)
   password = Column(String(100), nullable=False)
 
+  #This uses the checkpw() method to compare the incoming password (that is, the password parameter) to the one saved on the User object (self.password).
+  def verify_password(self, password):
+    return bcrypt.checkpw(
+      password.encode('utf-8'),
+      self.password.encode('utf-8')
+  )
+
   @validates('email')
   def validate_email(self, key, email):
     # make sure email address contains @ character
